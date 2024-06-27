@@ -1,5 +1,6 @@
 package com.Mysql.crud.controller;
 
+import com.Mysql.crud.model.Login;
 import com.Mysql.crud.model.Users;
 import com.Mysql.crud.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,4 +46,15 @@ public class UsersController {
         return service.delete(id);
     }
 
+    @GetMapping("/log-in/{userName}/{password}")
+    public String login(@PathVariable String userName,@PathVariable String password)
+    {
+        return service.check(userName,password);
+    }
+
+    @PostMapping("/login")
+    public String login2(@RequestBody Login login)
+    {
+        return service.authenticate(login);
+    }
 }
